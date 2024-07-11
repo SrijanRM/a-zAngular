@@ -1,0 +1,15 @@
+<h1> we know {{title}}</h1>
+<h2>use of prperty binding shown here</h2>
+<h1 [ngStyle]="{'color':room.availableRooms > 0 ? 'green':'red'}" [innerText]="propertybinding"></h1>
+<h2>interaction using event binding</h2>
+<button (click)="eventBinding()">toggle</button>
+<h1 [hidden]="hideRoom">event binding for toggle</h1>
+<div>nullish collission </div>
+<!-- {{room?.availableRooms ?? 'No Rooms'}} -->
+
+<div>{{roomSelected|json}}</div>
+
+<div>optional chaning </div>
+<div *ngIf="room?.availableRooms">
+    <app-room-list [title]="childTitle" [Room]="roomList" (roomSelected)="roomSelected($event)"></app-room-list>
+</div>
