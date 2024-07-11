@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './room';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-rooms',
@@ -7,13 +8,15 @@ import { Room, RoomList } from './room';
   styleUrls: ['./rooms.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomsComponent implements OnInit,DoCheck{
+export class RoomsComponent implements OnInit,DoCheck,AfterContentInit{
 
   // for binding 
   // we have three type 
   // interpolation , even and property binding 
 
-  title: any = 'Interpolation';
+  @ViewChild(HeaderComponent) headerComp! : HeaderComponent;
+
+  title: any = 'Interpolation'; 
   childTitle: any ='before ngOnChange ';
   propertybinding = 'propertybinding';
   hideRoom: any = false;
@@ -77,6 +80,9 @@ export class RoomsComponent implements OnInit,DoCheck{
   ];
 
   constructor() { }
+  ngAfterContentInit(): void {
+    throw new Error('Method not implemented.');
+  }
   ngDoCheck(): void {
     console.log("it will invoke each time when there is a change in coponent");
     console.log("try not to use onchange and docheck has they do same job");
@@ -107,4 +113,4 @@ export class RoomsComponent implements OnInit,DoCheck{
 // constructor > ngonchange > ngoninit > ngDoCheck > ngAfterContent init > 
 // ngAfterContentChecked > ngAfterviewinit > ngafterviewchecked > ngondestroy
 
-// 5:14:00
+// 5:50:00
