@@ -16,3 +16,7 @@ export class ContainerComponent implements OnInit, AfterContentInit {
   }
 
 }
+
+
+// DI 
+// 6:47:45

@@ -1,7 +1,10 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnInit, QueryList,
-   ViewChild, ViewChildren } from '@angular/core';
+import {
+  AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnInit, QueryList,
+  ViewChild, ViewChildren
+} from '@angular/core';
 import { Room, RoomList } from './room';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './services/rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -36,59 +39,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     bookedRooms: 1,
   }
 
-  roomList: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'AC',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 2500,
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Non AC',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 2000,
-    },
-    {
-      roomNumber: 3,
-      roomType: 'No fan',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 300,
-    },
-    {
-      roomNumber: 4,
-      roomType: '1 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 5000,
-    },
-    {
-      roomNumber: 5,
-      roomType: '2 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 20000,
-    },
-    {
-      roomNumber: 6,
-      roomType: '3 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 4000,
-    },
-    {
-      roomNumber: 7,
-      roomType: '4 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 3000,
-    }
-  ];
+  roomList: any;
 
-  constructor() { }
+
+  constructor( private roomservice : RoomsService) { }
   ngAfterViewChecked(): void {
     this.headerComp.title = "ng After View Init";
 
@@ -115,6 +69,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
 
   ngOnInit(): void {
+
+    this.roomList = this.roomservice.getRooms();
     console.log("used static has true to able to acess in oninit");
 
     console.log("view child  :", this.headerComp)
