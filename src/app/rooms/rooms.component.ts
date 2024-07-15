@@ -1,4 +1,5 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnInit, QueryList,
+   ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './room';
 import { HeaderComponent } from '../header/header.component';
 
@@ -8,16 +9,24 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./rooms.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RoomsComponent implements OnInit,DoCheck,AfterContentInit{
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   // for binding 
   // we have three type 
   // interpolation , even and property binding 
 
-  @ViewChild(HeaderComponent) headerComp! : HeaderComponent;
+  // @ViewChild(HeaderComponent) headerComp! : HeaderComponent;
 
-  title: any = 'Interpolation'; 
-  childTitle: any ='before ngOnChange ';
+  // if i add static has true then can acess it in ngOnInit ,async 
+  // @ViewChild(HeaderComponent, { static: true }) headerComp!: HeaderComponent;
+  @ViewChild(HeaderComponent) headerComp!: HeaderComponent;
+  // one instance viewchild 
+  // more instance viewchildren
+
+  @ViewChildren(HeaderComponent) headerChildren!: QueryList<HeaderComponent>;
+
+  title: any = 'Interpolation';
+  childTitle: any = 'before ngOnChange ';
   propertybinding = 'propertybinding';
   hideRoom: any = false;
 
@@ -80,19 +89,35 @@ export class RoomsComponent implements OnInit,DoCheck,AfterContentInit{
   ];
 
   constructor() { }
-  ngAfterContentInit(): void {
-    throw new Error('Method not implemented.');
+  ngAfterViewChecked(): void {
+    this.headerComp.title = "ng After View Init";
+
+    console.log("ngAfterViewChecked init ", this.headerComp.title);
+
   }
+
+
+  ngAfterViewInit(): void {
+    // console.log("view child after using after view init  :", this.headerComp)
+    this.headerComp.title = "ng After View Init";
+    console.log("view checked init ", this.headerComp.title);
+
+    this.headerChildren.forEach(item => item.title = "Title");
+  }
+
   ngDoCheck(): void {
     console.log("it will invoke each time when there is a change in coponent");
     console.log("try not to use onchange and docheck has they do same job");
     console.log("on change detect any changes done to input value ");
     console.log("docheck detect any changes done so it will cause duplicate if using both");
-    
-    
+
+
   }
 
   ngOnInit(): void {
+    console.log("used static has true to able to acess in oninit");
+
+    console.log("view child  :", this.headerComp)
   }
 
   eventBinding() {
@@ -114,3 +139,5 @@ export class RoomsComponent implements OnInit,DoCheck,AfterContentInit{
 // ngAfterContentChecked > ngAfterviewinit > ngafterviewchecked > ngondestroy
 
 // 5:50:00
+
+// ngaftercontentinit

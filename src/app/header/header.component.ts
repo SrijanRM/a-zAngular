@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  // title: string = 'from child invoke using view child , here not using input / output decorator ';
   title: string = '';
+  
   constructor() { }
 
   ngOnInit(): void {
