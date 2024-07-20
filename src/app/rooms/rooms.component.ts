@@ -97,3 +97,5 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // 5:50:00
 
 // ngaftercontentinit
+
+// 6:58:00 --  7:25:28
