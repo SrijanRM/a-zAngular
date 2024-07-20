@@ -42,7 +42,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   roomList: any;
 
 
-  constructor( private roomservice : RoomsService) { }
+  constructor(private roomservice: RoomsService) { }
   ngAfterViewChecked(): void {
     this.headerComp.title = "ng After View Init";
 
@@ -70,7 +70,16 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   ngOnInit(): void {
 
-    this.roomList = this.roomservice.getRooms();
+    // if we fetch from api
+    // gives error saying type observable not there 
+    // this.roomList = this.roomservice.getRooms();
+    // this.roomList = [];
+
+    this.roomservice.getRooms().subscribe(data => {
+      // this.roomList = rooms; // get call using api
+    });
+    // angular user rxjs library internally to work with data and it is also used inside http service also form / routiing 
+
     console.log("used static has true to able to acess in oninit");
 
     console.log("view child  :", this.headerComp)
@@ -99,3 +108,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // ngaftercontentinit
 
 // 6:58:00 --  7:25:28
+
+
+
+// pull 
+// getdate -> adddata -> getdata 
+// pushdata 
+// getdata -> rxjs is continous stream of data -> adddata 

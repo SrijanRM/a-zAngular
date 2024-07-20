@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../room';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomsService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
     console.log("room services initilised ");
 
   }
@@ -64,7 +65,10 @@ export class RoomsService {
   ];
 
   getRooms() {
-    return this.roomList;
+
+    return this.http.get<RoomList[]>('/api/rooms');
+
+    // return this.roomList;
   }
 
 
