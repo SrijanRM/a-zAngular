@@ -5,6 +5,7 @@ import {
 import { Room, RoomList } from './room';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { Observable, observable } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -32,6 +33,15 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   childTitle: any = 'before ngOnChange ';
   propertybinding = 'propertybinding';
   hideRoom: any = false;
+
+  // creating observable 
+  stream = new Observable(data => {
+    for (let i = 1; i < 10; i++) {
+      data.next(`user ${i}`);
+    }
+    data.complete();
+    // data.error('error');
+  });
 
   room: Room = {
     totalRooms: 20,
@@ -69,6 +79,12 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
 
   ngOnInit(): void {
+
+
+    // stream
+    this.stream.subscribe(data => {
+      console.log(data);
+    })
 
     // if we fetch from api
     // gives error saying type observable not there 
