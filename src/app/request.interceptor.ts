@@ -22,5 +22,5 @@ export class RequestInterceptor implements HttpInterceptor {
       headers: new HttpHeaders({ token: '7456268452' })
     });
     return next.handle(newRequest);
-  }
+  } 
 }
