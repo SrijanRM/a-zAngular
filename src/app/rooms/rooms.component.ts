@@ -5,8 +5,8 @@ import {
 import { Room, RoomList } from './room';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable, observable } from 'rxjs';
-import { HttpEventType } from '@angular/common/http';
+import { Observable, observable, shareReplay } from 'rxjs';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { CssSelector } from '@angular/compiler';
 
 @Component({
@@ -54,7 +54,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   roomList: any;
 
 
-  constructor(private roomservice: RoomsService) { }
+  constructor(private roomservice: RoomsService, private http: HttpClient) { }
   ngAfterViewChecked(): void {
     this.headerComp.title = "ng After View Init";
 
@@ -62,12 +62,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   }
 
-
   ngAfterViewInit(): void {
     // console.log("view child after using after view init  :", this.headerComp)
     this.headerComp.title = "ng After View Init";
     console.log("view checked init ", this.headerComp.title);
-
     this.headerChildren.forEach(item => item.title = "Title");
   }
 
@@ -76,17 +74,12 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     console.log("try not to use onchange and docheck has they do same job");
     console.log("on change detect any changes done to input value ");
     console.log("docheck detect any changes done so it will cause duplicate if using both");
-
-
   }
 
   totalbit = 0;
   ngOnInit(): void {
-
-
     this.roomservice.getPhotos().subscribe(event => {
       // console.log(data);
-
       switch (event.type) {
         case HttpEventType.Sent: {
           console.log("request sent ");
@@ -102,28 +95,28 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
         }
         case HttpEventType.Response: {
           console.log("response ", event.body);
-
         }
       }
     });
-
     // stream
     this.stream.subscribe(data => {
       console.log(data);
-    })
-
+    });
     // if we fetch from api
     // gives error saying type observable not there 
     // this.roomList = this.roomservice.getRooms();
     // this.roomList = [];
+    
+    this.roomservice.getRooms().subscribe(data => {
+      // this.roomList = rooms; // get call using api
+      console.log(data);
+    });
 
-    // this.roomservice.getRooms().subscribe(data => {
-    // this.roomList = rooms; // get call using api
-    // });
+    this.roomservice.getRooms$.subscribe(data => {
+      console.log(data);
+    });
     // angular user rxjs library internally to work with data and it is also used inside http service also form / routiing 
-
     console.log("used static has true to able to acess in oninit");
-
     console.log("view child  :", this.headerComp)
   }
 
@@ -134,7 +127,6 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   roomSelected(info: any) {
     console.log(info);
-
   }
 
 

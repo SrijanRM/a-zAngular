@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../room';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomsService {
 
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(
+    shareReplay(1)
+  );
+
+   
   constructor(private http: HttpClient) {
     console.log("room services initilised ");
-
   }
 
   roomList: RoomList[] = [
@@ -65,12 +70,9 @@ export class RoomsService {
   ];
 
   getRooms() {
-
     return this.http.get<RoomList[]>('/api/rooms');
-
     // return this.roomList;
   }
-
 
   getPhotos() {
     const request = new HttpRequest('GET', `https://jsonplaceholder.typicode.com/photos`, {
@@ -78,6 +80,5 @@ export class RoomsService {
     })
     return this.http.request(request);
   }
-
 
 }
