@@ -6,6 +6,8 @@ import { Room, RoomList } from './room';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { Observable, observable } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
+import { CssSelector } from '@angular/compiler';
 
 @Component({
   selector: 'app-rooms',
@@ -78,8 +80,32 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   }
 
+  totalbit = 0;
   ngOnInit(): void {
 
+
+    this.roomservice.getPhotos().subscribe(event => {
+      // console.log(data);
+
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log("request sent ");
+          break;
+        }
+        case HttpEventType.ResponseHeader: {
+          console.log("request sucess ");
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalbit += event.loaded;
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log("response ", event.body);
+
+        }
+      }
+    });
 
     // stream
     this.stream.subscribe(data => {
@@ -91,9 +117,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     // this.roomList = this.roomservice.getRooms();
     // this.roomList = [];
 
-    this.roomservice.getRooms().subscribe(data => {
-      // this.roomList = rooms; // get call using api
-    });
+    // this.roomservice.getRooms().subscribe(data => {
+    // this.roomList = rooms; // get call using api
+    // });
     // angular user rxjs library internally to work with data and it is also used inside http service also form / routiing 
 
     console.log("used static has true to able to acess in oninit");
@@ -124,10 +150,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // ngaftercontentinit
 
 // 6:58:00 --  7:25:28
+// 8:00:00
+
+// 8:31:00 try .
 
 
 
 // pull 
 // getdate -> adddata -> getdata 
-// pushdata 
-// getdata -> rxjs is continous stream of data -> adddata 
+// pushdata >;
+// getdata -> rxjs is continous stream of data -> adddata // 8:50
