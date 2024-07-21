@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../room';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { shareReplay } from 'rxjs';
 
 @Injectable({
@@ -8,11 +8,15 @@ import { shareReplay } from 'rxjs';
 })
 export class RoomsService {
 
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(
+  header = new HttpHeaders({ 'token': '1234' });
+
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms', {
+    headers: this.header,
+  }).pipe(
     shareReplay(1)
   );
 
-   
+
   constructor(private http: HttpClient) {
     console.log("room services initilised ");
   }
@@ -69,9 +73,14 @@ export class RoomsService {
     }
   ];
 
+
+
   getRooms() {
-    return this.http.get<RoomList[]>('/api/rooms');
+    // creating header for http request 
+    // return this.http.get<RoomList[]>('/api/rooms');
     // return this.roomList;
+
+    return this.http.get<RoomList[]>('/api/rooms');
   }
 
   getPhotos() {
