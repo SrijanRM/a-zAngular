@@ -8,7 +8,8 @@ import { RoomListComponent } from './rooms/room-list/room-list.component';
 import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { HttpClientModule } from '@angular/common/http'; // setting up httpclient 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // setting up httpclient 
+import { RequestInterceptor } from './request.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,11 @@ import { HttpClientModule } from '@angular/common/http'; // setting up httpclien
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:RequestInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

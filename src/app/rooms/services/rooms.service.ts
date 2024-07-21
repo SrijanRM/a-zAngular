@@ -8,11 +8,9 @@ import { shareReplay } from 'rxjs';
 })
 export class RoomsService {
 
-  header = new HttpHeaders({ 'token': '1234' });
+  // header = new HttpHeaders({ 'token': '1234' });
 
-  getRooms$ = this.http.get<RoomList[]>('/api/rooms', {
-    headers: this.header,
-  }).pipe(
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(
     shareReplay(1)
   );
 
