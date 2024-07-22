@@ -4,11 +4,16 @@ import { EmployeeComponent } from './employee/employee.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
 import { HeaderComponent } from './header/header.component';
+import { NotfounfComponent } from './notfound/notfounf.component';
+import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
 
 const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'rooms', component: RoomsComponent },
-  { path: '', redirectTo: '/rooms', pathMatch: 'full' }
+  // for dynamic routing 
+  { path: 'rooms/:id', component: RoomsBookingComponent },
+  { path: '', redirectTo: '/rooms', pathMatch: 'full' }, // default route 
+  { path: '**', component: NotfounfComponent } // wildcard route 
 ];
 
 @NgModule({

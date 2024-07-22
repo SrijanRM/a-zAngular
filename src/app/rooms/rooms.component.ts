@@ -106,11 +106,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     // gives error saying type observable not there 
     // this.roomList = this.roomservice.getRooms();
     // this.roomList = [];
-    
+
     this.roomservice.getRooms().subscribe(data => {
       // this.roomList = rooms; // get call using api
       console.log(data);
     });
+
+    this.roomList = this.roomservice.roomList;
 
     this.roomservice.getRooms$.subscribe(data => {
       console.log(data);
@@ -154,3 +156,5 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // getdata -> rxjs is continous stream of data -> adddata // 8:50
 
 // router 9:35:40 
+
+// 10:15:15
