@@ -152,3 +152,5 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // getdate -> adddata -> getdata 
 // pushdata >;
 // getdata -> rxjs is continous stream of data -> adddata // 8:50
+
+// router 9:35:40 
