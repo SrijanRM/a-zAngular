@@ -158,4 +158,4 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 // router 9:35:40 
 // 10:15:15 - > 10:27:04 template driven form 
 
-// 10:48:00  // template 
+// 10:48:00  // template // 11:14:00
