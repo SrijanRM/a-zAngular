@@ -22,53 +22,41 @@ export class RoomsService {
   roomList: RoomList[] = [
     {
       roomNumber: 1,
-      roomType: 'AC',
+      roomtype: 'AC',
       checkin: new Date('11-Jan-2023'),
       checkout: new Date('12-Jan-2023'),
       price: 2500,
+      amenities: '',
+      rating: 0
     },
     {
       roomNumber: 2,
-      roomType: 'Non AC',
+      roomtype: 'Non AC',
       checkin: new Date('11-Jan-2023'),
       checkout: new Date('12-Jan-2023'),
       price: 2000,
+      amenities: '',
+      rating: 0
     },
     {
       roomNumber: 3,
-      roomType: 'No fan',
+      roomtype: 'No fan',
       checkin: new Date('11-Jan-2023'),
       checkout: new Date('12-Jan-2023'),
       price: 300,
+      amenities: '',
+      rating: 0
     },
     {
       roomNumber: 4,
-      roomType: '1 Star',
+      roomtype: '1 Star',
       checkin: new Date('11-Jan-2023'),
       checkout: new Date('12-Jan-2023'),
       price: 5000,
+      amenities: '',
+      rating: 0
     },
-    {
-      roomNumber: 5,
-      roomType: '2 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 20000,
-    },
-    {
-      roomNumber: 6,
-      roomType: '3 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 4000,
-    },
-    {
-      roomNumber: 7,
-      roomType: '4 Star',
-      checkin: new Date('11-Jan-2023'),
-      checkout: new Date('12-Jan-2023'),
-      price: 3000,
-    }
+
   ];
 
 

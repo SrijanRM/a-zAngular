@@ -21,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfounfComponent } from './notfound/notfounf.component';
 import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
+import { RoomAddComponent } from './rooms/room-add/room-add.component';
+import { FormsModule } from '@angular/forms';
 
 
 function initFactory(InitService: InitService) {
@@ -38,7 +40,8 @@ function initFactory(InitService: InitService) {
     EmployeeComponent,
     AppNavComponent,
     NotfounfComponent,
-    RoomsBookingComponent
+    RoomsBookingComponent,
+    RoomAddComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ function initFactory(InitService: InitService) {
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

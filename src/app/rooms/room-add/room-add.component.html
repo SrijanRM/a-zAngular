@@ -1,0 +1,25 @@
+{{ room | json  }}
+
+<form (ngSubmit)="addRooms()">
+    <div class="form-group">
+        <input required class="form-control" type="text" name="roomtype" placeholder="roomtype" [(ngModel)]="room.roomtype">
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="text" name="amenities" placeholder="amenities" [(ngModel)]="room.amenities">
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="number" name="price" placeholder="price" [(ngModel)]="room.price">
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="datetime" name="checkin" placeholder="check in " [(ngModel)]="room.checkin">
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="datetime" name="checkout" placeholder="check out" [(ngModel)]="room.checkout">
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="number" name="rating" placeholder="rating" [(ngModel)]="room.rating">
+    </div>
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
