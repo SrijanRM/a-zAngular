@@ -1,25 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { ContainerComponent } from './container/container.component';
-import { HeaderComponent } from './header/header.component';
 import { NotfounfComponent } from './notfound/notfounf.component';
-import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
-import { RoomAddComponent } from './rooms/room-add/room-add.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/add', component: RoomAddComponent },
   { path: 'login', component: LoginComponent },
-  // for dynamic routing 
-  { path: 'rooms/:id', component: RoomsBookingComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // default route 
   { path: '**', component: NotfounfComponent } // wildcard route 
 ];
 
+
+// FOR ROOT 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

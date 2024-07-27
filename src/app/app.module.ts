@@ -42,6 +42,9 @@ function initFactory(InitService: InitService) {
   ],
   imports: [
     BrowserModule,
+
+    RoomsModule, // ALWAYS REGISTER FEATURE MODULE BEFORE ROUTING MODULE , MPORT FOLLOW SEQUENTIAL ORDERS 
+
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -52,7 +55,7 @@ function initFactory(InitService: InitService) {
     MatIconModule,
     MatListModule,
     FormsModule,
-    RoomsModule,
+ 
     HeaderModule
   ],
   providers: [{
