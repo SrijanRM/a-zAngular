@@ -6,7 +6,9 @@
 <div>invalid : {{ roomForm.invalid | json }} </div>
 <div>value : {{ roomForm.value | json }} </div>
 <br>
-<form #roomForm="ngForm" (ngSubmit)="addRooms()">
+
+
+<form #roomForm="ngForm" (ngSubmit)="addRooms(roomForm)">
     <div class="form-group">
         <input required class="form-control" type="text" name="roomtype" placeholder="roomtype"
             [(ngModel)]="room.roomtype">

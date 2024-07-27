@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomList } from '../room';
 import { RoomsService } from '../services/rooms.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-room-add',
@@ -23,8 +24,15 @@ export class RoomAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addRooms() {
-    
+  addRooms(roomForm: NgForm) {
+    roomForm.resetForm({
+      roomtype: '',
+      amenities: '',
+      checkin: new Date(),
+      checkout: new Date(),
+      rating: 0,
+      price: 0
+    });
   }
 
 }
