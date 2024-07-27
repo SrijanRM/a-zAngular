@@ -4,11 +4,16 @@ import { RoomsComponent } from './rooms.component';
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 
+
+// NESTED ROUTING 
 const routes: Routes = [
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/add', component: RoomAddComponent },
-  // for dynamic routing 
-  { path: 'rooms/:id', component: RoomsBookingComponent },
+  {
+    path: 'rooms',
+    component: RoomsComponent,
+    children: [{ path: ':id', component: RoomsBookingComponent }, { path: 'add', component: RoomAddComponent }]
+  },
+ 
+  
 ];
 
 
