@@ -1,11 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { RoomListComponent } from './rooms/room-list/room-list.component';
-import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // setting up httpclient 
@@ -20,12 +16,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfounfComponent } from './notfound/notfounf.component';
-import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
-import { RoomAddComponent } from './rooms/room-add/room-add.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './valiadator/emailvalidator.directive';
+import { RoomsModule } from './rooms/rooms.module';
+import { HeaderModule } from './header/header.module';
 
 
 function initFactory(InitService: InitService) {
@@ -36,15 +32,10 @@ function initFactory(InitService: InitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent,
-    RoomListComponent,
-    HeaderComponent,
     ContainerComponent,
     EmployeeComponent,
     AppNavComponent,
     NotfounfComponent,
-    RoomsBookingComponent,
-    RoomAddComponent,
     LoginComponent,
     HoverDirective,
     EmailvalidatorDirective
@@ -60,7 +51,9 @@ function initFactory(InitService: InitService) {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    RoomsModule,
+    HeaderModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
