@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     //   console.log(event);
     // })
 
-    // pipe rxjs 
+    // pipe rxjs  
 
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart)
