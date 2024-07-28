@@ -8,6 +8,7 @@ import { RoomsService } from './services/rooms.service';
 import { Observable, observable, shareReplay } from 'rxjs';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { CssSelector } from '@angular/compiler';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -54,7 +55,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   roomList: any;
 
 
-  constructor(private roomservice: RoomsService, private http: HttpClient) { }
+  constructor(private roomservice: RoomsService, private http: HttpClient , private serCong : ConfigService) { }
   ngAfterViewChecked(): void {
     this.headerComp.title = "ng After View Init";
 
