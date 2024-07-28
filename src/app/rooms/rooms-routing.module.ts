@@ -8,7 +8,7 @@ import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 // NESTED ROUTING 
 const routes: Routes = [
   {
-    path: 'rooms',
+    path: '',
     component: RoomsComponent,
     children: [{ path: ':id', component: RoomsBookingComponent }, { path: 'add', component: RoomAddComponent }]
   },

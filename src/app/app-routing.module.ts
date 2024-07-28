@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // default route 
-  { path: '**', component: NotfounfComponent } // wildcard route 
+  { path: '**', component: NotfounfComponent }, // wildcard route 
+  { path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) }
 ];
 
 
