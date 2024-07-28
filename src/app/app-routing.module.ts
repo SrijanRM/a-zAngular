@@ -9,7 +9,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // default route 
   { path: '**', component: NotfounfComponent }, // wildcard route 
-  { path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) }
+  { path: 'rooms', loadChildren: () => import('./rooms/rooms.module').then(m => m.RoomsModule) },
+  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) }
+
+  // ng g m comname --route=routename --routing --model=modelloc
+  // for lazy loading usig cli
 ];
 
 
