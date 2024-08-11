@@ -1,1 +1,74 @@
-<p>booking works!</p>
+<p>booking works! {{bookingForm.value | json }}</p>
+
+<form class="example-full-width" [formGroup]="bookingForm" (ngSubmit)="addBooking()">
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Room Id</mat-label>
+        <input type="text" matInput formControlName="roomId" placeholder="Ex. room id">
+        <!-- <mat-hint>Errors appear instantly!</mat-hint> 
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">Please
+            enter a valid email address</mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">Email is <strong>required</strong></mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>guestemail</mat-label>
+        <input type="email" matInput formControlName="guestemail" placeholder="Ex. guestemail">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Choose a date check in </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="checkindate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Choose a date check out </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="checkoutdate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>bookingstatus</mat-label>
+        <input type="text" matInput formControlName="bookingstatus" placeholder="Ex. bookingstatus">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>bookingnumber</mat-label>
+        <input type="number" matInput formControlName="bookingnumber" placeholder="Ex.bookingnumber ">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>bookingamount</mat-label>
+        <input type="number" matInput formControlName="bookingamount" placeholder="Ex.bookingamount ">
+    </mat-form-field>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title> Personal data </mat-panel-title>
+                <mat-panel-description>
+                    Type your name and age
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input matInput />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput type="number" min="1" />
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div>
+        <button mat-raised-button color="primary">Submit</button>
+    </div>
+
+
+
+</form>
+
+ <!-- // only one form should be added in a page : formgroup -->
+<!-- // other has : formgroupname     15 27 00  -->

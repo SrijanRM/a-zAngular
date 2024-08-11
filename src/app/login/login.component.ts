@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       console.log('login component ')
       console.log("email ", this.email, " password ", this.password)
 
-      this.router.navigate(['/rooms']);
+      this.router.navigateByUrl('/rooms/add');
     }
   }
 
